@@ -33,7 +33,7 @@ const Page: React.FC = () => {
       }
       const data = await response.json();
       setHotels(data.hotels);
-    } catch (error) {
+    } catch (error : any) {
       console.error("Error fetching hotels:", error.message);
     }
   };

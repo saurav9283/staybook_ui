@@ -20,7 +20,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setHotelData((prevData) => ({
+    setHotelData((prevData: any) => ({
       ...prevData,
       [name]: value,
     }));
@@ -38,7 +38,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
     const imageURLParam = urlParams.get("url");
     return imageURLParam || url;
   };
-  const handleChange = (newPhone) => {
+  const handleChange = (newPhone: string) => {
     setPhone(newPhone);
   };
 
@@ -65,7 +65,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
       } else {
         console.error("Error submitting data:", response.statusText);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting data:", error.message);
     }
   };
@@ -154,7 +154,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
               <Rating name="simple-controlled" value={value} />
               <Box sx={{ width: 120 }}>
                 <Slider
-                  onChange={(event, newValue) => {
+                  onChange={(event, newValue:any) => {
                     setValue(newValue);
                   }}
                   aria-label="Temperature"
