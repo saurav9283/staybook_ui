@@ -48,7 +48,7 @@ const Form = () => {
     };
     // console.log(formData)
     try {
-      const response = await fetch("http://localhost:8000/api/hotels", {
+      const response = await fetch("https://staybook-api.vercel.app/api/hotels", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

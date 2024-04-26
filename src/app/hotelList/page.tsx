@@ -10,6 +10,7 @@ interface Hotel {
   hotelRating: number;
   hotelPhoneNumber: string;
   hotelAriName: string;
+  hotelCitySlug: string;
   hotelLandmark: string;
   hotelEmail: string;
 }
@@ -19,17 +20,21 @@ const Page: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [hoveredHotel, setHoveredHotel] = useState<string | null>(null);
   const [openModel , setOpenModel] = useState(false)
-  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
+  const [selectedHotel, setSelectedHotel] = useState<Hotel | any>(null);
 
   useEffect(() => {
     fetchHotels();
   }, []);
 
-
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setSelectedHotel({...selectedHotel, [name]: value})
+  };
 
   const fetchHotels = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/hotels");
+      const response = await fetch("https://staybook-api.vercel.app/api/hotels");
+      // const response = await fetch("http://localhost:8000/api/hotels");
       // console.log(response)
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -48,9 +53,8 @@ const Page: React.FC = () => {
   };
 
   const handleEdit = async (selectedHotel: Hotel) => {
-    console.log(selectedHotel._id)
+    // console.log(selectedHotel._id)
     const id = selectedHotel?._id;
-    // console.log(id)
     const formData = {
       hotelName: selectedHotel?.hotelName,
       hotelAriName: selectedHotel?.hotelAriName,
@@ -60,9 +64,11 @@ const Page: React.FC = () => {
       hotelRating: selectedHotel?.hotelRating,
       hotelPhoneNumber: selectedHotel?.hotelPhoneNumber,
       hotelEmail: selectedHotel?.hotelEmail,
+      hotelCitySlug: selectedHotel?.hotelCitySlug,
     };
     try {
-      const response = await fetch(`http://localhost:8000/api/hotels/${id}`, {
+      const response = await fetch(`https://staybook-api.vercel.app/api/hotels/${id}`, {
+      // const response = await fetch(`http://localhost:8000/api/hotels/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -129,35 +135,39 @@ const Page: React.FC = () => {
           <form>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelName">Hotel Name</label>
-              <input className="bg-[#f1f4f5] p-2" type="text" name="hotelName" id="hotelName" defaultValue={selectedHotel.hotelName} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2" type="text" name="hotelName" id="hotelName" defaultValue={selectedHotel.hotelName} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelFullAddress">Hotel Full Address</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelFullAddress" id="hotelFullAddress" defaultValue={selectedHotel.hotelFullAddress} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelFullAddress" id="hotelFullAddress" defaultValue={selectedHotel.hotelFullAddress} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelRating">Hotel Rating</label>
-              <input className="bg-[#f1f4f5] p-2"  type="number" name="hotelRating" id="hotelRating" defaultValue={selectedHotel.hotelRating} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="number" name="hotelRating" id="hotelRating" defaultValue={selectedHotel.hotelRating} />
+            </div>
+            <div className="flex items-center mb-5">
+              <label className="mr-5" htmlFor="hotelCitySlug">Hotel City Slug</label>
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelCitySlug" id="hotelCitySlug" defaultValue={selectedHotel.hotelCitySlug} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelAriName">Hotel Ari Name</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelAriName" id="hotelAriName" defaultValue={selectedHotel?.hotelAriName} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelAriName" id="hotelAriName" defaultValue={selectedHotel?.hotelAriName} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelLandmark">Hotel Landmark</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelLandmark" id="hotelLandmark" defaultValue={selectedHotel.hotelLandmark} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelLandmark" id="hotelLandmark" defaultValue={selectedHotel.hotelLandmark} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelImage">Hotel Image</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelImage" id="hotelImage" defaultValue={selectedHotel.hotelImage} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelImage" id="hotelImage" defaultValue={selectedHotel.hotelImage} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelPhoneNumber">Hotel Phone Number</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelPhoneNumber" id="hotelPhoneNumber" defaultValue={selectedHotel.hotelPhoneNumber} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="text" name="hotelPhoneNumber" id="hotelPhoneNumber" defaultValue={selectedHotel.hotelPhoneNumber} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelEmail">Hotel Email</label>
-              <input className="bg-[#f1f4f5] p-2"  type="email" name="hotelEmail" id="hotelEmail" defaultValue={selectedHotel.hotelEmail} />
+              <input onChange={handleInputChange} className="bg-[#f1f4f5] p-2"  type="email" name="hotelEmail" id="hotelEmail" defaultValue={selectedHotel.hotelEmail} />
             </div>
             <button className="bg-blue-500 text-white px-3 py-1 rounded-lg" onClick={() => handleEdit(selectedHotel)}>Edit</button>
             <button className="bg-red-500 text-white px-3 py-1 rounded-lg ml-3" onClick={() => setOpenModel(false)}>Close</button>
