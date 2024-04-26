@@ -41,7 +41,13 @@ const Form = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = {
-      ...hotelData,
+      // ...hotelData,
+      hotelName: hotelData.hotelName,
+      hotelAriName:hotelData.hotelAriName,
+      hotelEmail: hotelData.hotelEmail,
+      hotelFullAddress: hotelData.hotelFullAddress,
+      hotelLandmark: hotelData.hotelLandmark,
+      hotelCitySlug: hotelData.hotelCitySlug,
       hotelImage: imageURL,
       hotelRating: value,
       hotelPhoneNumber: phone,
@@ -57,6 +63,10 @@ const Form = () => {
       });
       if (response.ok) {
         alert("Data submitted successfully");
+        setHotelData({});
+      setImageURL("");
+      setValue(null);
+      setPhone("");
         // console.log("Data submitted successfully");
       } else {
         console.error("Error submitting data:", response.statusText);
