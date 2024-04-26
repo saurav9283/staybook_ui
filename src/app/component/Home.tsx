@@ -191,7 +191,7 @@ const Form = () => {
             Hotel Phone Number
           </label>
           <PhoneInput
-          className="bg-white mt-1 p-2 border rounded-3xl w-full"
+          // className="bg-white mt-1 p-2 border rounded-3xl w-full"
             country={'in'}
             value={phone}
             onChange={handleChange}
