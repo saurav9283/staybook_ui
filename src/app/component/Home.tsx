@@ -26,13 +26,17 @@ const Form = () => {
     const inputURL = event.target.value;
     const directURL = extractDirectImageURL(inputURL);
     setImageURL(directURL || "");
-    console.log(directURL);
   };
 
   const extractDirectImageURL = (url: string) => {
-    const urlParams = new URLSearchParams(new URL(url).search);
-    const imageURLParam = urlParams.get("url");
-    return imageURLParam || url;
+    try {
+      const urlParams = new URLSearchParams(new URL(url).search);
+      const imageURLParam = urlParams.get("url");
+      return imageURLParam || url;
+    } catch (error: any) {
+      console.error("Invalid URL:", url, "Error:", error.message);
+      return null; 
+    }
   };
   const handleChange = (newPhone: string) => {
     setPhone(newPhone);
@@ -41,7 +45,6 @@ const Form = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = {
-      // ...hotelData,
       hotelName: hotelData.hotelName,
       hotelAriName:hotelData.hotelAriName,
       hotelEmail: hotelData.hotelEmail,
