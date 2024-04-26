@@ -4,15 +4,11 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Slider from "@mui/material/Slider";
 import { MuiTelInput } from "mui-tel-input";
-import PhoneInput from "react-phone-number-input";
 
-interface FormProps {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
 function valuetext(value: number) {
   return `${value}°C`;
 }
-const Form: React.FC<FormProps> = ({ onSubmit }) => {
+const Form = () => {
   const [value, setValue] = React.useState<number | null>(2);
   const [phone, setPhone] = React.useState("");
   const [imageURL, setImageURL] = useState("");

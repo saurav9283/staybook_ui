@@ -9,6 +9,8 @@ interface Hotel {
   hotelFullAddress: string;
   hotelRating: number;
   hotelPhoneNumber: string;
+  hotelAriName: string;
+  hotelLandmark: string;
   hotelEmail: string;
 }
 
@@ -139,7 +141,7 @@ const Page: React.FC = () => {
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelAriName">Hotel Ari Name</label>
-              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelAriName" id="hotelAriName" defaultValue={selectedHotel.hotelAriName} />
+              <input className="bg-[#f1f4f5] p-2"  type="text" name="hotelAriName" id="hotelAriName" defaultValue={selectedHotel?.hotelAriName} />
             </div>
             <div className="flex items-center mb-5">
               <label className="mr-5" htmlFor="hotelLandmark">Hotel Landmark</label>
