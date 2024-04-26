@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Slider from "@mui/material/Slider";
 import { MuiTelInput } from "mui-tel-input";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -188,11 +190,17 @@ const Form = () => {
           >
             Hotel Phone Number
           </label>
-          <MuiTelInput
+          <PhoneInput
+          className="bg-white mt-1 p-2 border rounded-3xl w-full"
+            country={'in'}
+            value={phone}
+            onChange={handleChange}
+          />
+          {/* <MuiTelInput
             value={phone}
             onChange={handleChange}
             className="mui-tel-input bg-white  outline-none p-1 h-10 border-none rounded-3xl w-full"
-          />
+          /> */}
         </div>
         <div>
           <label
