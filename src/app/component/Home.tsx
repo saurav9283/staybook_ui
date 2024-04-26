@@ -24,6 +24,12 @@ const Form = () => {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputURL = event.target.value;
+    try {
+      new URL(inputURL);
+    }
+    catch (error: any) {
+      alert("Invalid Image link address copy the image link address")
+    }
     const directURL = extractDirectImageURL(inputURL);
     setImageURL(directURL || "");
   };
@@ -66,11 +72,6 @@ const Form = () => {
       });
       if (response.ok) {
         alert("Data submitted successfully");
-        setHotelData({});
-      setImageURL("");
-      setValue(null);
-      setPhone("");
-        // console.log("Data submitted successfully");
       } else {
         console.error("Error submitting data:", response.statusText);
       }
