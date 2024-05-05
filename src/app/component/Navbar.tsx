@@ -15,11 +15,11 @@ const Navbar = () => {
                 Home
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/hotelList" className="text-gray-300 hover:text-white">
                 Hotels
               </a>
-            </li>
+            </li> */}
             
           </ul>
         </div>
