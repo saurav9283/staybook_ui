@@ -52,7 +52,7 @@ const Page: React.FC = () => {
     // console.log(selectedHotel);
     setOpenModel(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/hotels/${hotel._id}`);
+      const response = await fetch(`https://staybook-api.vercel.app/api/hotels/${hotel._id}`);
       if (!response.ok) {
         throw new Error("Failed to fetch hotel data");
       }
