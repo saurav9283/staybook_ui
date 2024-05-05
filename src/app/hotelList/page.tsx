@@ -47,22 +47,22 @@ const Page: React.FC = () => {
       console.error("Error fetching hotels:", error.message);
     }
   };
-  const handleEditClick =async (hotel: Hotel) => {
-    setSelectedHotel(hotel);
-    // console.log(selectedHotel);
-    setOpenModel(true);
-    try {
-      const response = await fetch(`https://staybook-api.vercel.app/api/hotels/${hotel._id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch hotel data");
-      }
-      const data = await response.json();
-      console.log(data);
-      setSelectedHotel(data);
-    } catch (error: any) {
-      console.error("Error fetching hotel:", error.message);
-    }
-  };
+  // const handleEditClick =async (hotel: Hotel) => {
+  //   setSelectedHotel(hotel);
+  //   // console.log(selectedHotel);
+  //   setOpenModel(true);
+  //   try {
+  //     const response = await fetch(`https://staybook-api.vercel.app/api/hotels/${hotel._id}`);
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch hotel data");
+  //     }
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setSelectedHotel(data);
+  //   } catch (error: any) {
+  //     console.error("Error fetching hotel:", error.message);
+  //   }
+  // };
 
   const handleEdit = async (selectedHotel: Hotel) => {
     // console.log(selectedHotel._id)
@@ -116,9 +116,14 @@ const Page: React.FC = () => {
             alt={hotel.hotelName}
           />
           <div className="absolute top-0 right-0 mt-2 mr-2 cursor-pointer">
-            {hoveredHotel === hotel._id && (
-              <EditIcon onClick={() => handleEditClick(hotel)} />
-            )}
+            {/* {hoveredHotel === hotel._id && (
+              <EditIcon
+                onClick={() => {
+                  setSelectedHotel(hotel);
+                  setOpenModel(true);
+                }}
+              />
+            )} */}
           </div>
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{hotel.hotelName}</div>
