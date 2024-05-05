@@ -130,6 +130,7 @@ const Form = () => {
             type="text"
             name="hotelName"
             id="hotelName"
+            pattern="[A-Za-z]+"
             value={hotelData?.hotelName || ""}
             onChange={handleChange1}
             className="mt-1 p-2 border rounded-3xl w-full"
