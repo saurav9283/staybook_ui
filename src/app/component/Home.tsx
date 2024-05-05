@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Slider from "@mui/material/Slider";
@@ -12,10 +12,12 @@ function valuetext(value: number) {
 }
 const Form = () => {
   const [value, setValue] = React.useState<number | null>(2);
-  const [phone, setPhone] = React.useState("");
+  const [phone, setPhone] = React.useState(""); 
   const [imageURL, setImageURL] = useState("");
-  const [hotelData, setHotelData] = useState<any>({});
+  const [hotelData, setHotelData] = useState<any>();
+  const [prevName, setPrevName] = useState<any>();
 
+  const [options, setOptions] = useState<any>(false);
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setHotelData((prevData: any) => ({
@@ -43,7 +45,7 @@ const Form = () => {
       return imageURLParam || url;
     } catch (error: any) {
       console.error("Invalid URL:", url, "Error:", error.message);
-      return null; 
+      return null;
     }
   };
   const handleChange = (newPhone: string) => {
@@ -54,11 +56,14 @@ const Form = () => {
     event.preventDefault();
     const formData = {
       hotelName: hotelData.hotelName,
-      hotelAriName:hotelData.hotelAriName,
+      hotelAriName: hotelData.hotelAriName,
       hotelEmail: hotelData.hotelEmail,
       hotelFullAddress: hotelData.hotelFullAddress,
       hotelLandmark: hotelData.hotelLandmark,
       hotelCitySlug: hotelData.hotelCitySlug,
+      hotelCityState: hotelData.hotelCityState,
+      City: hotelData.City,
+      Pincode: hotelData.Pincode,
       hotelImage: imageURL,
       hotelRating: value,
       hotelPhoneNumber: phone,
@@ -120,12 +125,40 @@ const Form = () => {
             Hotel Name
           </label>
           <input
+            onFocus={() => setOptions(true)}
             type="text"
             name="hotelName"
             id="hotelName"
+            pattern="[A-Za-z]+"
+            value={hotelData?.hotelName || ""}
             onChange={handleChange1}
             className="mt-1 p-2 border rounded-3xl w-full"
           />
+          {options && <div className="mt-2 flex gap-2">
+            <button
+              onClick={() => {
+                setPrevName(hotelData.hotelName);
+              }}
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 text-green-900 font-bold rounded-2xl"
+            >
+              Save
+            </button>
+            <button
+              onClick={() => {
+                if (prevName && prevName !== hotelData.hotelName) {
+                  setHotelData({ ...hotelData, hotelName: prevName });
+                  setOptions(false);
+
+
+                } else {
+                  setOptions(false);
+                }
+              }}
+              className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 text-orange-900 font-bold rounded-2xl"
+            >
+              Cancel
+            </button>
+          </div>}
         </div>
         <div>
           <label
@@ -166,7 +199,7 @@ const Form = () => {
               <Rating name="simple-controlled" value={value} />
               <Box sx={{ width: 120 }}>
                 <Slider
-                  onChange={(event, newValue:any) => {
+                  onChange={(event, newValue: any) => {
                     setValue(newValue);
                   }}
                   aria-label="Temperature"
@@ -191,7 +224,7 @@ const Form = () => {
             Hotel Phone Number
           </label>
           <PhoneInput
-          // className="bg-white mt-1 p-2 border rounded-3xl w-full"
+            // className="bg-white mt-1 p-2 border rounded-3xl w-full"
             country={'in'}
             value={phone}
             onChange={handleChange}
@@ -258,6 +291,51 @@ const Form = () => {
             type="text"
             name="hotelCitySlug"
             id="hotelCitySlug"
+            onChange={handleChange1}
+            className="mt-1 p-2 border rounded-3xl w-full"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="hotelState"
+            className="block text-sm font-bold text-gray-700"
+          >
+            State
+          </label>
+          <input
+            type="text"
+            name="hotelCityState"
+            id="hotelCityState"
+            onChange={handleChange1}
+            className="mt-1 p-2 border rounded-3xl w-full"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="City"
+            className="block text-sm font-bold text-gray-700"
+          >
+            City
+          </label>
+          <input
+            type="text"
+            name="City"
+            id="City"
+            onChange={handleChange1}
+            className="mt-1 p-2 border rounded-3xl w-full"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="Pincode"
+            className="block text-sm font-bold text-gray-700"
+          >
+            Pincode
+          </label>
+          <input
+            type="text"
+            name="Pincode"
+            id="Pincode"
             onChange={handleChange1}
             className="mt-1 p-2 border rounded-3xl w-full"
           />

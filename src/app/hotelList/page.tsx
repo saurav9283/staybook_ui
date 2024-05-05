@@ -149,6 +149,7 @@ const Page: React.FC = () => {
                     className="bg-[#f1f4f5] p-2"
                     type="text"
                     name="hotelName"
+
                     id="hotelName"
                     defaultValue={selectedHotel.hotelName}
                   />
