@@ -64,41 +64,41 @@ const Page: React.FC = () => {
   //   }
   // };
 
-  const handleEdit = async (selectedHotel: Hotel) => {
-    // console.log(selectedHotel._id)
-    const id = selectedHotel?._id;
-    const formData = {
-      hotelName: selectedHotel?.hotelName,
-      hotelAriName: selectedHotel?.hotelAriName,
-      hotelImage: selectedHotel?.hotelImage,
-      hotelLandmark: selectedHotel?.hotelLandmark,
-      hotelFullAddress: selectedHotel?.hotelFullAddress,
-      hotelRating: selectedHotel?.hotelRating,
-      hotelPhoneNumber: selectedHotel?.hotelPhoneNumber,
-      hotelEmail: selectedHotel?.hotelEmail,
-      hotelCitySlug: selectedHotel?.hotelCitySlug,
-    };
-    try {
-      const response = await fetch(
-        `https://staybook-api.vercel.app/api/hotels/${id}`,
-        {
-          // const response = await fetch(`http://localhost:8000/api/hotels/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      if (response.ok) {
-        alert("Data Saved successfully");
-      } else {
-        console.error("Error submitting data:", response.statusText);
-      }
-    } catch (error: any) {
-      console.error("Error submitting data:", error.message);
-    }
-  };
+  // const handleEdit = async (selectedHotel: Hotel) => {
+  //   // console.log(selectedHotel._id)
+  //   const id = selectedHotel?._id;
+  //   const formData = {
+  //     hotelName: selectedHotel?.hotelName,
+  //     hotelAriName: selectedHotel?.hotelAriName,
+  //     hotelImage: selectedHotel?.hotelImage,
+  //     hotelLandmark: selectedHotel?.hotelLandmark,
+  //     hotelFullAddress: selectedHotel?.hotelFullAddress,
+  //     hotelRating: selectedHotel?.hotelRating,
+  //     hotelPhoneNumber: selectedHotel?.hotelPhoneNumber,
+  //     hotelEmail: selectedHotel?.hotelEmail,
+  //     hotelCitySlug: selectedHotel?.hotelCitySlug,
+  //   };
+  //   // try {
+  //   //   const response = await fetch(
+  //   //     `https://staybook-api.vercel.app/api/hotels/${id}`,
+  //   //     {
+  //   //       // const response = await fetch(`http://localhost:8000/api/hotels/${id}`, {
+  //   //       method: "PATCH",
+  //   //       headers: {
+  //   //         "Content-Type": "application/json",
+  //   //       },
+  //   //       body: JSON.stringify(formData),
+  //   //     }
+  //   //   );
+  //   //   if (response.ok) {
+  //   //     alert("Data Saved successfully");
+  //   //   } else {
+  //   //     console.error("Error submitting data:", response.statusText);
+  //   //   }
+  //   // } catch (error: any) {
+  //   //   console.error("Error submitting data:", error.message);
+  //   // }
+  // };
   // console.log(selectedHotel)
 
   return (
@@ -278,7 +278,7 @@ const Page: React.FC = () => {
                 </div>
                 <button
                   className="bg-blue-500 text-white px-3 py-1 rounded-lg"
-                  onClick={() => handleEdit(selectedHotel)}
+                  // onClick={() => handleEdit(selectedHotel)}
                 >
                   Edit
                 </button>
