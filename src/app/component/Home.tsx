@@ -150,8 +150,6 @@ const Form = () => {
                 if (prevName && prevName !== hotelData.hotelName) {
                   setHotelData({ ...hotelData, hotelName: prevName });
                   setOptions(false);
-
-
                 } else {
                   setOptions(false);
                 }

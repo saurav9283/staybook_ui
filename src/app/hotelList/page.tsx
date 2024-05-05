@@ -47,10 +47,21 @@ const Page: React.FC = () => {
       console.error("Error fetching hotels:", error.message);
     }
   };
-  const handleEditClick = (hotel: Hotel) => {
+  const handleEditClick =async (hotel: Hotel) => {
     setSelectedHotel(hotel);
     // console.log(selectedHotel);
     setOpenModel(true);
+    try {
+      const response = await fetch(`http://localhost:8000/api/hotels/${hotel._id}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch hotel data");
+      }
+      const data = await response.json();
+      console.log(data);
+      setSelectedHotel(data);
+    } catch (error: any) {
+      console.error("Error fetching hotel:", error.message);
+    }
   };
 
   const handleEdit = async (selectedHotel: Hotel) => {
